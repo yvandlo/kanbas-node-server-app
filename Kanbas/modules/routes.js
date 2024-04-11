@@ -1,4 +1,4 @@
-import db from "../Database/index.js";
+//import db from "../Database/index.js";
 import * as dao from "./dao.js";
 function ModuleRoutes(app) {
     const deleteModule = async (req, res) => {
