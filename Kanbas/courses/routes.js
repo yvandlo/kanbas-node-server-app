@@ -8,12 +8,12 @@ export default function CourseRoutes(app) {
     };
 
     const createCourse = async (req, res) => {
-        /*const course = {
+        const newCourse = {
             ...req.body,
-            _id: new Date().getTime().toString()
+            id: new Date().getTime().toString()
         };
-        Database.courses.push(course);*/
-        const course = await dao.createCourse(req.body);
+        /*Database.courses.push(course);*/
+        const course = await dao.createCourse(newCourse);
         res.send(course);
     };
 
