@@ -24,7 +24,11 @@ function QuizRoutes(app) {
         res.sendStatus(204);
     };
 
-
+    const findQuizById = async (req, res) => {
+        const { qid } = req.params;
+        const users = await dao.findQuizById(qid);
+        res.send(users);
+    };
 
     const findQuizzesByCourse = async (req, res) => {
         const { cid } = req.params;
@@ -33,6 +37,7 @@ function QuizRoutes(app) {
     };
     app.delete("/api/quizzes/:mid", deleteQuiz);
     app.get("/api/courses/:cid/quizzes", findQuizzesByCourse);
+    app.get("/api/quizzes/:qid", findQuizById);
     app.put("/api/quizzes/:mid", updateQuiz);
     app.post("/api/courses/:cid/quizzes", createQuiz);
 }

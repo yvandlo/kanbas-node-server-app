@@ -1,20 +1,14 @@
 import mongoose from "mongoose";
-/*const quizDetailSchema = new mongoose.Schema({
-    quiztype: { type: String, default: "Quiz Type" },
-    points: { type: Number, default: 0 },
-    assignmentgroup: { type: String, default: "Quizzes" },
-    shuffleanswers: { type: Boolean, default: true },
-    timelimit: { type: Number, default: 20 },
-    multipleattempts: { type: Boolean, default: false },
-    showcorrectanswers: Boolean,
-    accesscode: { type: String, default: "" },
-    onequestionatatime: { type: Boolean, default: true },
-    webcamrequired: { type: Boolean, default: false },
-    lockquestionsafteranswering: { type: Boolean, default: false },
-    dueDate: Date,
-    availableDate: Date,
-    untilDate: Date,
-});*/
+
+const question = new mongoose.Schema({
+    type: { type: String, default: "Multiple" },
+    title: String,
+    points: Number,
+    question: String,
+    slots: [String],
+    answer: Boolean,
+});
+
 const quizSchema = new mongoose.Schema({
     //id: { type: String, required: true, unique: true },
 
@@ -22,7 +16,7 @@ const quizSchema = new mongoose.Schema({
     description: String,
     published: { type: Boolean, default: false },
     course: String,
-    quiztype: { type: String, default: "Quiz Type" },
+    quiztype: { type: String, default: "Graded Quiz" },
     points: { type: Number, default: 0 },
     assignmentgroup: { type: String, default: "Quizzes" },
     shuffleanswers: { type: Boolean, default: true },
@@ -36,5 +30,6 @@ const quizSchema = new mongoose.Schema({
     dueDate: Date,
     availableDate: Date,
     untilDate: Date,
+    questions: { type: [question], default: [] },
 }, { collection: "quizzes" });
 export default quizSchema;
