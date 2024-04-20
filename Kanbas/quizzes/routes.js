@@ -30,6 +30,20 @@ function QuizRoutes(app) {
         res.sendStatus(204);
     };
 
+    const updatePoints = async (req, res) => {
+        const { mid } = req.params;
+        //console.log("Quiz: " + req.body.points);
+        await dao.updatePoints(mid, req.body.points);
+        res.sendStatus(204);
+    };
+
+    const updateNumQuestinos = async (req, res) => {
+        const { mid } = req.params;
+        //console.log("Quiz: " + req.body.points);
+        await dao.updateNumberQuestions(mid, req.body.points);
+        res.sendStatus(204);
+    };
+
     const findQuizById = async (req, res) => {
         const { qid } = req.params;
         const users = await dao.findQuizById(qid);
@@ -46,6 +60,8 @@ function QuizRoutes(app) {
     app.get("/api/quizzes/:qid", findQuizById);
     app.put("/api/quizzes/:mid", updateQuiz);
     app.put("/api/quizzes/:mid/publish", publishQuiz);
+    app.put("/api/quizzes/:mid/points", updatePoints);
+    app.put("/api/quizzes/:mid/numquestions", updateNumQuestinos);
     app.post("/api/courses/:cid/quizzes", createQuiz);
 }
 export default QuizRoutes;
