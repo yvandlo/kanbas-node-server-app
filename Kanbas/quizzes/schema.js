@@ -1,13 +1,6 @@
 import mongoose from "mongoose";
 
-const question = new mongoose.Schema({
-    type: { type: String, default: "Multiple" },
-    title: String,
-    points: Number,
-    question: String,
-    slots: [String],
-    answer: Boolean,
-});
+
 
 const quizSchema = new mongoose.Schema({
     //id: { type: String, required: true, unique: true },
@@ -30,6 +23,5 @@ const quizSchema = new mongoose.Schema({
     dueDate: Date,
     availableDate: Date,
     untilDate: Date,
-    questions: { type: [question], default: [] },
 }, { collection: "quizzes" });
 export default quizSchema;
